@@ -5,6 +5,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import org.springframework.http.HttpHeaders;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,8 +51,7 @@ public class SQLSubmitService {
     private void submitSQLAnswer(RestTemplate restTemplate, String webhook, String token, String finalQuery) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(token); // Set Authorization: Bearer <token>
-
+        headers.set("Authorization", token);
         Map<String, String> body = new HashMap<>();
         body.put("finalQuery", finalQuery);
 
